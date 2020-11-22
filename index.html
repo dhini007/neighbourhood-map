@@ -1,0 +1,119 @@
+<!-- This is the corresponding "starter code" for 07_Markers/Infowindows in Udacity and Google's Maps
+API Course, Lesson 1 -->
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="utf-8">
+  <!-- styles put here, but you can include a CSS file and reference it instead! -->
+  <style type="text/css">
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .infoSize {
+      height: 100px;
+      overflow-y: scroll;
+    }
+
+    #map {
+      height: 800px;
+      width: 76%;
+      right: 0px;
+    }
+
+    .searchText {
+      width: 100%;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .headerMenu {
+      display: none;
+    }
+
+    .options-box {
+      background: #045;
+      border: 1px solid #999;
+      border-radius: 3px;
+      height: 100%;
+      line-height: 35px;
+      padding: 10px 10px 30px 10px;
+      text-align: left;
+      width: 340px;
+    }
+
+    .toggler {
+      background: #045;
+      color: white;
+      padding-top: 20px;
+      padding-left: 5px;
+      padding-right: 5px;
+      display: none;
+    }
+
+    .textColor {
+      color: #F00;
+    }
+
+    @media screen and (max-width: 700px) {
+      .headerMenu {
+        left: 0;
+        position: absolute;
+        padding: 0.5em;
+        display: inline-block;
+        text-align: center;
+        z-index: 10;
+      }
+      #map {
+        width: 100%;
+      }
+      .options-box {
+        z-index: 10;
+        width: 200px;
+        position: absolute;
+        -webkit-transform: translate(-300px, 0);
+        transform: translate(-300px, 0);
+        transition: transform 0.3s ease;
+      }
+      .show {
+        z-index: 10;
+        width: 200px;
+        position: absolute;
+        -webkit-transform: translate(40px, 0);
+        transform: translate(40px, 0);
+        transition: transform 0.3s ease;
+      }
+      .toggler {
+        display: block;
+      }
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="options-box">
+      <input type="text" class="searchText" data-bind="textInput: searchPoint,valueUpdate: 'afterKeydown',event: {keyup:filteredLocations}">
+      <ul data-bind="foreach:locationList">
+        <li class="textColor" data-bind="text:title,click:$parent.itemClick"></li>
+      </ul>
+    </div>
+    <div class="toggler">
+      <img style="width: 30px;" src="http://www.iconsplace.com/download/turquoise-view-details-128.ico">
+    </div>
+    <div id="map"></div>
+  </div>
+  <script src="maps.js"></script>
+
+  </script>
+</body>
+
+</html>
